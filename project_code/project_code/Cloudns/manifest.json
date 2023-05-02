@@ -1,0 +1,12 @@
+{
+    "id":           "cloudns",
+	"type":         "mod",
+    "name":         "ClouDNS",
+    "description":  "ClouDNS DNS configuration module.",
+    "icon_url":     "icon.png",
+    "homepage_url": "https://vesuvius.cs.umd.edu/",
+    "author":       "CMSC435 HOSTING2",
+    "author_url":   "https://vesuvius.cs.umd.edu/",
+    "license":      "GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+    "version":      "0.0.1"
+}

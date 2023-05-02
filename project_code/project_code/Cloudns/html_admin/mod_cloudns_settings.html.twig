@@ -1,0 +1,61 @@
+{% extends request.ajax ? "layout_blank.html.twig" : "layout_default.html.twig" %}
+
+{% import "macro_functions.html.twig" as mf %}
+
+{% block meta_title %}ClouDNS extension settings{% endblock %}
+
+{% set active_menu = 'system' %}
+
+{% block breadcrumbs %}
+{# <ul>
+    <li class="firstB"><a href="{{ '/'|alink }}">{{ 'Home'|trans }}</a></li>
+    <li><a href="{{ 'system'|alink }}">{{ 'Settings'|trans }}</a></li>
+    <li class="lastB">{{ 'cloudns module settings'|trans }}</li>
+</ul> #}
+{% endblock %}
+
+{% block content %}
+{# <div class="widget">
+    <div class="head">
+        <h5 class="iCog">{{ 'cloudns module settings'|trans }}</h5>
+    </div> #}
+
+{% set params = admin.extension_config_get({ "ext": "mod_cloudns" }) %}
+
+<form method="post" action="{{ 'api/admin/extension/config_save'|link }}" class="mainForm api-form" data-api-msg="{{ 'Configuration updated'|trans }}">
+    <div class="help">
+        <h3>{{ 'ClouDNS API Key Setup'|trans }}</h3>
+        <p>{{ 'Insert your ClouDNS API authorization ID and Password to setup automated ClouDNS DNS configuration.'|trans }}</p>
+    </div>
+    
+    <fieldset>
+        <div class="rowElem noborder">
+            <label>{{ 'API Auth ID'|trans }}</label>
+            <div class="formRight">
+                <input type="text" name="auth_id" value="{{ params.auth_id }}" placeholder="{{ 'Auth ID'|trans }}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+
+        <div class="rowElem">
+            <label>{{ 'API Auth Password'|trans }}</label>
+            <div class="formRight">
+                <input type="password" name="auth_passwd" value="{{ params.auth_passwd }}" placeholder="{{ 'Password'|trans }}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+
+        <div class="rowElem">
+            <label>{{ 'Server IP Address or domain name to populate the A record.'|trans }}</label>
+            <div class="formRight">
+                <input type="text" name="server_ip" value="{{ params.server_ip }}" placeholder="{{ 'xxx.xxx.xxx.xxx'|trans }}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+
+        <input type="submit" value="{{ 'Update'|trans }}" class="greyishBtn submitForm" />
+        <input type="hidden" name="ext" value="mod_cloudns" />
+    </fieldset>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends request.ajax ? "layout_blank.html.twig" : "layout_default.html.twig" %}
+
+{% block meta_title %}{{ 'ClouDNS module'|trans }}{% endblock %}
+{% block breadcrumb %} <li class="active">{{ 'ClouDNS module'|trans }}</li>{% endblock %}
+
+{% block page_header %}
+<article class="page-header">
+    <h1>{{ 'ClouDNS module title'|trans }}</h1>
+</article>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <article class="span12 data-block">
+        <div class="data-container">
+            <header>
+                <h1>{{ 'ClouDNS module title'|trans }}</h1>
+                <p>{{ 'ClouDNS module description'|trans }}</p>
+            </header>
+            <section>
+                {% if client and show_protected %}
+                    <div class="row">
+                        <article class="span12 data-block">
+                            <div class="data-container">
+                                <header>
+                                    <h2>{{ 'This content can be seen only if client is logged in'|trans }}</h2>
+                                </header>
+                                <section>
+                                    <p>{{ 'Your protected content'|trans }}</p>
+                                    <p><a class="btn btn-inverse" href="{{ 'client/me'|link }}">{{ 'Manage profile'|trans }}</a></p>
+                                </section>
+                            </div>
+                        </article>
+                    </div>
+                {% else %}
+                <a class="btn btn-primary" href="{{ 'login'|link }}">{{ 'Login to client area'|trans }}</a>
+                {% endif %}
+            </section>
+        </div>
+    </article>
+</div>
+
+{% endblock %}
